@@ -201,9 +201,9 @@ const timeOfDay = getDayOrNight();
     card.classList.add("card", "card-lg", "current-weather-card");
 // Set the background image using inline style
 if (timeOfDay == "day") {
-  card.style.backgroundImage = 'url("../images/sky-day.jpg")';
+  card.style.backgroundImage = 'url("./assets/images/sky-day.jpg")';
 } else {
-  card.style.backgroundImage = 'url("../images/night-sky.jpg")';
+  card.style.backgroundImage = 'url("./assets/images/night-sky.jpg")';
 }
 
 
@@ -279,9 +279,9 @@ card.style.backgroundSize = 'cover';
       const card = document.createElement("div");
       card.classList.add("card", "card-lg");
       if (timeOfDay == "day") {
-        card.style.backgroundImage = 'url("../images/sky-day.jpg")';
+        card.style.backgroundImage = 'url("./assets/images/sky-day1.jpg")';
       } else {
-        card.style.backgroundImage = 'url("../images/night-sky.jpg")';
+        card.style.backgroundImage = 'url("./assets/images/night-sky.jpg")';
       }
 
       // card.style.backgroundImage = 'url("/assets/images/sky-day.jpg")';
