@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>External map layers</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
+
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoicnlsZXJuIiwiYSI6ImNrOG13MTBnNjBqOHUzZ28yaDVwa2EyNG8ifQ.7j5QBEl47sKJqyu1rcCbNA';
+  var map = L.mapbox.map('map', 'mapbox.light')
+    .setView([4.86992, -11.0616], 2);
+
+
+
+var OpenWeatherMap_Temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+    opacity: 0.3
+}).addTo(map);
+
+var NASAGIBS_ModisTerraSnowCover = L.tileLayer('http://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Snow_Cover/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+    attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+    bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+    minZoom: 1,
+    maxZoom: 8,
+    format: 'png',
+    time: '',
+    tilematrixset: 'GoogleMapsCompatible_Level',
+    opacity: 0.75
+}).addTo(map);
+
+var layerGroup = L.control.layers({},{'Snow':NASAGIBS_ModisTerraSnowCover,
+    'Air Temperature':OpenWeatherMap_Temperature}).addTo(map);
+
+</script>
+</body>
+</html>
